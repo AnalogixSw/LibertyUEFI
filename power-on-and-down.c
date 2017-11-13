@@ -93,10 +93,10 @@ VOID power_down(UINT8 spi_slave_addr, UIN8 tcpc_slave_addr)
 	UINT8 rev = get_chip_rev(spi_slave_addr);
 	if (rev == AA_CHIP_REV)
 	{
-		anx74XX_read_data(spi_slave_addr, ANALOG_CTRL_1, &val, 1);
+		anx74XX_read_data(tcpc_slave_addr, ANALOG_CTRL_1, &val, 1);
 		val = val |  TOGGLE_CTRL_MODE |R_TOGGLE_ENABLE;
 		anx74XX_write_data(tcpc_slave_addr, ANALOG_CTRL_1, &val, 1);
-		anx74XX_read_data(spi_slave_addr, ANALOG_CTRL_1, &val, 1);
+		anx74XX_read_data(tcpc_slave_addr, ANALOG_CTRL_1, &val, 1);
 		val = val | R_LATCH_TOGGLE_ENABLE;
 		anx74XX_write_data(tcpc_slave_addr, ANALOG_CTRL_1, &val, 1);
 	}
