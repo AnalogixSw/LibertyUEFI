@@ -15,6 +15,15 @@
 #define RDO_MAX_VOLT_OFFSET 0xAF
 #define RDO_MAX_POWER_OFFSET 0xB0
 
+#define OCM_VERSION 0xB4
+#define EFUSE_READ_DATA_0     0x8D
+#define HARDWARE_CHIP_REV_OFFSET 0x95
+#define AA_CHIP_REV 0xAA
+#define AC_CHIP_REV 0xAC
+#define RING_OSC_CTRL 0xD9
+#define ADC_CTRL_2    0xC0
+#define ANALOG_CTRL_6  0xA6
+
 #define TX_BUFFER_OFFSET 0xC0
 #define INTR_ALERT_0  0xCB
 #define INTR_ALERT_1  0xCC
