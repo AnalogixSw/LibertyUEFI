@@ -1,6 +1,6 @@
 ///******************************************************************************
 //The contents of this file are provided under the conditions defined
-//by the AA-001946-LA-5-Software_License_Agreement.pdf.
+//by the LICENSE.txt.
 //Copyright (c) 2017, Analogix Semiconductor, Inc.
 ///******************************************************************************
 //slave addr: 0x7e, 0x6e, 0x64,0x62
