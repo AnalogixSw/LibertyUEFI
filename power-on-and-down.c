@@ -1,3 +1,9 @@
+///******************************************************************************
+//The contents of this file are provided under the conditions defined
+//by the LICENSE.txt.
+//Copyright (c) 2017, Analogix Semiconductor, Inc.
+///******************************************************************************
+
 #include "Anx74XXLib.h"
 #include "Anx74XXLibReg.h"
 
