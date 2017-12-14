@@ -1,3 +1,9 @@
+///******************************************************************************
+//The contents of this file are provided under the conditions defined
+//by the LICENSE.txt.
+//Copyright (c) 2017, Analogix Semiconductor, Inc.
+///******************************************************************************
+
 typedef enum
 {
     ANX74XX_FW_FEATURE_CTRL_BITMAP_AUTO_PD_EN            = 1 << 1,   //bit 1
