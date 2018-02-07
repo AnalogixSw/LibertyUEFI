@@ -469,3 +469,27 @@ anx74xx_set_port_role(
 				TYPE_DP_SNK_IDENTITY);
 	return EFI_SUCCESS;
 }
+
+EFI_STATUS
+EFIAPI
+anx74xx_get_port_power_role(
+    UINT8 slave_addr,
+    ANX74XX_POWER_ROLE* power_role
+)
+{
+	UINT8 status = 0;
+	UINT8 ret = anx74XX_read_data(slave_addr, SYSTEM_STATUS_OFFSET, &status, 1);
+	if (ret != 1)
+	{
+		return EFI_ERROR;
+	}
+	if (status & VBUS_STATUS)
+	{
+		*power_role = ANX74XX_POWER_ROLE_SOURCE;
+	}
+	else
+	{
+		*power_role = ANX74XX_POWER_ROLE_SINK;
+	}
+	return EFI_SUCCESS;
+}
