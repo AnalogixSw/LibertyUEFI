@@ -45,6 +45,11 @@ typedef struct
     ANX74XX_CCX_STATUS_TYPE     CC2;
 }ANX74XX_CC_STATUS
 
+typedef enum
+{
+    ANX74XX_POWER_ROLE_SINK,
+    ANX74XX_POWER_ROLE_SOURCE
+}ANX74XX_POWER_ROLE;
 /*
     API to enable disable firmware feature
     @param slave_addr - I2C Slave Address of the HW
@@ -225,3 +230,16 @@ anx74xx_set_port_role(
     ANX74XX_PORT_ROLE_TYPE  port_role
 );
 
+/*
+    API to get port power role
+    @param port_role - port role to be set
+    
+    @return EFI_SUCCESS if the operation is successful. 
+            Other Error code if error has been detected  
+*/
+EFI_STATUS
+EFIAPI
+anx74xx_get_port_power_role(
+    UINT8 slave_addr,
+    ANX74XX_POWER_ROLE* power_role
+);
