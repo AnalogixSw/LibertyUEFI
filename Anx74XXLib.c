@@ -498,14 +498,14 @@ EFI_STATUS
 EFIAPI
 anx74xx_set_initial_msg_info(
     UINT8 slave_addr, 
-    UINT32 *p_msg, 
-    UINT32 no_of_msg,
+    UINT8 *p_msg, 
+    UINT8 msg_size,
     UINT8 message_type
 )
 {
 	if (p_msg)
 	{
-		send_pd_msg(slave_addr, (UINT8 *)p_msg, no_of_msg*MSG_DATA_OBJECT_SIZE, message_type);
+		send_pd_msg(slave_addr, p_msg, msg_size, message_type);
 	}
 	return EFI_SUCCESS;
 }
