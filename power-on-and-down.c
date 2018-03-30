@@ -33,7 +33,7 @@ UINT32 g_sink_capabilities[4] = {
 };
 UINT8 g_SVID[4] = { 0x00, 0x00, 0x00, 0xff };
 //VDO in Discovery Modes response
-//DFP_D-capable
+//DFP_D-capable, data role DFP prefered
 UINT8 g_DP_Capabilities[4] = { 0xC6, 0x00, 0x00, 0x00 };
 //Identity response
 UINT8 g_Indentity[12] = {
