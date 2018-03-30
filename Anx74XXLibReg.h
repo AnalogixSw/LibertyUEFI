@@ -14,6 +14,7 @@
 #define CONFIG_RDO_MIN_POWER_OFFSET 0xAE
 #define RDO_MAX_VOLT_OFFSET 0xAF
 #define RDO_MAX_POWER_OFFSET 0xB0
+#define UNSTRUCT_VDM_EN_OFFSET 0xF0
 
 #define OCM_VERSION 0xB4
 #define EFUSE_READ_DATA_0     0x8D
@@ -133,4 +134,43 @@ typedef enum
 (sup | (vbus << 3) | (vconn << 4) | (vpower << 5) | (rx2 << 8) | (rx1 << 9) | \
  (tx2 << 10) | (tx1 << 11) | (fw << 24) | (hw << 28))
 
+//Macros for PDO
+#define PDO_TYPE_FIXED ((UINT32)0 << 30)
+#define PDO_TYPE_BATTERY ((UINT32)1 << 30)
+#define PDO_TYPE_VARIABLE ((UINT32)2 << 30)
+#define PDO_TYPE_MASK ((UINT32)3 << 30)
+#define PDO_FIXED_DUAL_ROLE ((UINT32)1 << 29)	/* Dual role device */
+#define PDO_FIXED_SUSPEND_HIGHER ((UINT32)1 << 28)	/* USB Suspend supported */
+#define PDO_FIXED_EXTERNAL ((UINT32)1 << 27)	/* Externally powered */
+#define PDO_FIXED_COMM_CAP ((UINT32)1 << 26)	/* USB Communications Capable */
+#define PDO_FIXED_DATA_SWAP ((UINT32)1 << 25)	/* Data role swap command */
+#define PDO_FIXED_UNCHUNKED_SUPPORTED ((UINT32)1 << 24) /*Unchunked extend message*/
+#define PDO_FIXED_PEAK_CURR ((UINT32)1 << 20)	/* [21..20] Peak current */
+/* Voltage in 50mV units */
+#define PDO_FIXED_VOLT(mv) (UINT32)((((UINT32)mv)/50) << 10)
+/* Max current in 10mA units */
+#define PDO_FIXED_CURR(ma) (UINT32)((((UINT32)ma)/10))
 
+/*build a fixed PDO packet*/
+#define PDO_FIXED(mv, ma, flags) \
+	(PDO_FIXED_VOLT(mv)\
+	| PDO_FIXED_CURR(ma)\
+	| (flags))
+
+/*Pos in Data Object, the first index number begin from 0 */
+#define PDO_INDEX(n, dat) (dat << (n * PD_ONE_DATA_OBJECT_SIZE*sizeof(UINT8)))
+#define PDO_VAR_MAX_VOLT(mv) ((((mv) / 50) & 0x3FF) << 20)
+#define PDO_VAR_MIN_VOLT(mv) ((((mv) / 50) & 0x3FF) << 10)
+#define PDO_VAR_OP_CURR(ma) ((((ma) / 10) & 0x3FF) << 0)
+
+#define PDO_VAR(min_mv, max_mv, op_ma) \
+	(PDO_VAR_MIN_VOLT(min_mv) | PDO_VAR_MAX_VOLT(max_mv) | \
+	PDO_VAR_OP_CURR(op_ma) | PDO_TYPE_VARIABLE)
+#define PDO_BATT_MAX_VOLT(mv) ((((mv) / 50) & 0x3FF) << 20)
+#define PDO_BATT_MIN_VOLT(mv) ((((mv) / 50) & 0x3FF) << 10)
+#define PDO_BATT_OP_POWER(mw) ((((mw) / 250) & 0x3FF) << 0)
+#define PDO_BATT(min_mv, max_mv, op_mw) \
+	(PDO_BATT_MIN_VOLT(min_mv)\
+	| PDO_BATT_MAX_VOLT(max_mv)\
+	| PDO_BATT_OP_POWER(op_mw)\
+	| PDO_TYPE_BATTERY)
