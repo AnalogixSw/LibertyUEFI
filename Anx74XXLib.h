@@ -136,6 +136,57 @@ anx74xx_set_sink_cap(
 );
 
 /*
+    API to set VDM Identity response PDO
+    @param slave_addr - I2C Slave Address of the HW
+    @param p_identity - pointer to a array of VDM Identity
+    @param no_of_identity - number of Identity response are passed in the previous argument
+    
+    @return EFI_SUCCESS if the operation is successful. 
+            Other Error code if error has been detected    
+ */
+EFI_STATUS
+EFIAPI
+anx74xx_set_Identiy_Response(
+    UINT8 slave_addr, 
+    UINT32 *p_identity, 
+    UINT32 no_of_identity
+);
+
+/*
+    API to set VDM DP Capbilities PDO
+    @param slave_addr - I2C Slave Address of the HW
+    @param p_dp_cap - pointer to a array of VDM DP capabilities
+    @param no_of_dp_cap - number of VDM DP capabilities are passed in the previous argument
+    
+    @return EFI_SUCCESS if the operation is successful. 
+            Other Error code if error has been detected    
+ */
+EFI_STATUS
+EFIAPI
+anx74xx_set_DP_Cap(
+    UINT8 slave_addr, 
+    UINT32 *p_dp_cap, 
+    UINT32 no_of_dp_cap
+);
+
+/*
+    API to set VDM SVID response PDO
+    @param slave_addr - I2C Slave Address of the HW
+    @param p_svid - pointer to a array of VDM SVID
+    @param no_of_svid - number of SVID response are passed in the previous argument
+    
+    @return EFI_SUCCESS if the operation is successful. 
+            Other Error code if error has been detected    
+ */
+EFI_STATUS
+EFIAPI
+anx74xx_set_SVID_Response(
+    UINT8 slave_addr, 
+    UINT32 *p_svid, 
+    UINT32 no_of_svid
+);
+
+/*
     API to get the value of global variable which indicating 
     non-compliant C-to-A cable is detected
     @param slave_addr - I2C Slave Address of the HW
