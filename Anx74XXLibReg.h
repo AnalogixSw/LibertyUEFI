@@ -174,3 +174,23 @@ typedef enum
 	| PDO_BATT_MAX_VOLT(max_mv)\
 	| PDO_BATT_OP_POWER(op_mw)\
 	| PDO_TYPE_BATTERY)
+
+
+/*5000mv voltage*/
+#define PD_VOLTAGE_5V 5000
+#define PD_VOLTAGE_12V 12000
+#define PD_VOLTAGE_20V 20000
+
+#define PD_MAX_VOLTAGE_20V 20000
+#define PD_MAX_VOLTAGE_21V 21000
+
+#define PD_CURRENT_100MA   100
+/*0.9A current */
+#define PD_CURRENT_900MA   900
+#define PD_CURRENT_1500MA 1500
+
+#define PD_CURRENT_3A   3000
+
+#define PD_POWER_15W  15000
+
+#define PD_POWER_60W  60000
