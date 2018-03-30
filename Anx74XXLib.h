@@ -139,7 +139,7 @@ anx74xx_set_sink_cap(
     API to set initial PD messages information (Identity Response, SVID response, DP capabilities)
     @param slave_addr - I2C Slave Address of the HW
     @param p_msg - pointer to a array of PD message content
-    @param no_of_msg - number of object are passed in the previous argument
+    @param msg_size - bytes count of object are passed in the previous argument
     @param message_type - type of PD message to initialize, please refer the definition
                           ANX74XX_MSG_TYPE in Anx74XXLibReg.h
                           typedef enum
@@ -159,8 +159,8 @@ EFI_STATUS
 EFIAPI
 anx74xx_set_initial_msg_info(
     UINT8 slave_addr, 
-    UINT32 *p_msg, 
-    UINT32 no_of_msg,
+    UINT8 *p_msg, 
+    UINT8 msg_size,
     UINT8 message_type
 );
 
