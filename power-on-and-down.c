@@ -106,16 +106,17 @@ VOID power_on(UINT8 spi_slave_addr, UIN8 tcpc_slave_addr)
 		val = 0x11;
 		anx74XX_write_data(tcpc_slave_addr, ANALOG_CTRL_6, &val, 1)
 	}
+	//Removed initial configuration and configure them by Custom Define
 	//configure CC status mask
-	anx74xx_set_irq_unmask(spi_slave_addr, ANX74XX_IRQ_BITMAP_CC_STATUS_CHG_INT);
+	//anx74xx_set_irq_unmask(spi_slave_addr, ANX74XX_IRQ_BITMAP_CC_STATUS_CHG_INT);
 	//configure RDO, these parameters  need to be set addroding the device's power capability.
-	anx74xx_set_power_negotiation_parameter(spi_slave_addr, PD_MAX_VOLTAGE_20V, PD_POWER_60W, PD_POWER_15W);
+	//anx74xx_set_power_negotiation_parameter(spi_slave_addr, PD_MAX_VOLTAGE_20V, PD_POWER_60W, PD_POWER_15W);
 	//Send initial settings
-	anx74xx_set_source_cap(spi_slave_addr, g_source_capabilities, 1);
-	anx74xx_set_sink_cap(spi_slave_addr, g_sink_capabilities, 4);
-	anx74xx_set_initial_msg_info(spi_slave_addr, g_Indentity, 12, TYPE_DP_SNK_IDENTITY);
-	anx74xx_set_initial_msg_info(spi_slave_addr, g_SVID, 4, TYPE_SVID);
-	anx74xx_set_initial_msg_info(spi_slave_addr, g_DP_Capabilities, 4, TYPE_DP_CAP);
+	//anx74xx_set_source_cap(spi_slave_addr, g_source_capabilities, 1);
+	//anx74xx_set_sink_cap(spi_slave_addr, g_sink_capabilities, 4);
+	//anx74xx_set_initial_msg_info(spi_slave_addr, g_Indentity, 12, TYPE_DP_SNK_IDENTITY);
+	//anx74xx_set_initial_msg_info(spi_slave_addr, g_SVID, 4, TYPE_SVID);
+	//anx74xx_set_initial_msg_info(spi_slave_addr, g_DP_Capabilities, 4, TYPE_DP_CAP);
 }
 
 VOID power_down(UINT8 spi_slave_addr, UIN8 tcpc_slave_addr)
